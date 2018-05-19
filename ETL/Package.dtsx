@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="192"
-  DTS:VersionGUID="{753C6450-CFC6-4B93-B21F-249B901A12AA}">
+  DTS:VersionBuild="195"
+  DTS:VersionGUID="{679E0350-2B31-43D3-BFD6-1CF484669F76}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -782,7 +782,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{44BB7860-B10C-4A53-BEE1-CD1990E4E356}"
-          SQLTask:SqlStatementSource="CREATE TABLE DIM_CONDITIONS(&#xA;&#x9;primary_key char(6) NOT NULL,&#xA;&#x9;speed_limit int NOT NULL,&#xA;&#x9;junction_detail varchar NOT NULL,&#xA;&#x9;junction_control varchar NOT NULL,&#xA;&#x9;light_conditions varchar NOT NULL,&#xA;&#x9;weather_conditions varchar NOT NULL,&#xA;&#x9;urban_or_rural_area varchar NOT NULL&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="CREATE TABLE DIM_CONDITIONS(&#xA;&#x9;primary_key char(6) NOT NULL,&#xA;&#x9;speed_limit tinyint NOT NULL,&#xA;&#x9;junction_detail varchar(30) NOT NULL,&#xA;&#x9;junction_control varchar(30) NOT NULL,&#xA;&#x9;light_conditions varchar(30) NOT NULL,&#xA;&#x9;weather_conditions varchar(30) NOT NULL,&#xA;&#x9;urban_or_rural_area varchar(30) NOT NULL&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -816,7 +816,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{44BB7860-B10C-4A53-BEE1-CD1990E4E356}"
-          SQLTask:SqlStatementSource="CREATE TABLE DIM_LOCATION(&#xA;&#x9;highway_authority varchar(50) NOT NULL,&#xA;&#x9;country varchar(30) &#xA;);&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="CREATE TABLE DIM_LOCATION(&#xA;&#x9;highway_authority varchar(50) NOT NULL,&#xA;&#x9;country varchar(30) NOT NULL&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -833,7 +833,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{44BB7860-B10C-4A53-BEE1-CD1990E4E356}"
-          SQLTask:SqlStatementSource="CREATE TABLE DIM_TIME(&#xA;&#x9;primary_key int NOT NULL,&#xA;&#x9;hour int NOT NULL,&#xA;&#x9;minute int NOT NULL,&#xA;&#x9;time_of_day int NOT NULL,&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="CREATE TABLE DIM_TIME(&#xA;&#x9;primary_key int NOT NULL,&#xA;&#x9;hour tinyint NOT NULL,&#xA;&#x9;minute tinyint NOT NULL,&#xA;&#x9;time_of_day tinyint NOT NULL,&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
