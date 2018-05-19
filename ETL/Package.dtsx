@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="181"
-  DTS:VersionGUID="{7BB5D930-AB12-458D-BACB-8C0F628E9C48}">
+  DTS:VersionBuild="187"
+  DTS:VersionGUID="{430E442A-D3D0-4D55-BFAD-E933B746BF06}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -867,7 +867,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{44BB7860-B10C-4A53-BEE1-CD1990E4E356}"
-          SQLTask:SqlStatementSource="CREATE TABLE FACT_ACCIDENTS(&#xA;&#x9;id int IDENTITY(1,1),&#xA;&#x9;accident_index varchar(15) NOT NULL,&#xA;&#x9;vehicle_id int NOT NULL,&#xA;&#x9;casualty_id int,&#xA;&#x9;casualty_severity varchar(4),&#xA;&#x9;date int NOT NULL,&#xA;&#x9;time int,&#xA;&#x9;conditions char(6) NOT NULL,&#xA;&#x9;location varchar(50) NOT NULL &#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="CREATE TABLE FACT_ACCIDENTS(&#xA;&#x9;id int IDENTITY(1,1),&#xA;&#x9;accident_index varchar(15) NOT NULL,&#xA;&#x9;vehicle_id int NOT NULL,&#xA;&#x9;casualty_id int,&#xA;&#x9;casualty_severity tinyint,&#xA;&#x9;date int NOT NULL,&#xA;&#x9;time int,&#xA;&#x9;conditions char(6) NOT NULL,&#xA;&#x9;location varchar(50) NOT NULL &#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -2105,9 +2105,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                       lineageId="Package\IMPORT DATA\Sort.Outputs[Sort Output].Columns[vehicle_id]" />
                     <inputColumn
                       refId="Package\IMPORT DATA\Add casualty id to facts.Inputs[Merge Join Left Input].Columns[&quot;casualty_severity&quot;]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
+                      cachedDataType="i1"
                       cachedName="&quot;casualty_severity&quot;"
                       lineageId="Package\IMPORT DATA\Sort.Outputs[Sort Output].Columns[&quot;casualty_severity&quot;]" />
                     <inputColumn
@@ -2204,9 +2202,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                     </outputColumn>
                     <outputColumn
                       refId="Package\IMPORT DATA\Add casualty id to facts.Outputs[Merge Join Output].Columns[&quot;casualty_severity&quot;]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
+                      dataType="i1"
                       lineageId="Package\IMPORT DATA\Add casualty id to facts.Outputs[Merge Join Output].Columns[&quot;casualty_severity&quot;]"
                       name="&quot;casualty_severity&quot;">
                       <properties>
@@ -3996,9 +3992,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[&quot;vehicle_reference&quot;]" />
                     <inputColumn
                       refId="Package\IMPORT DATA\Add vehicle id to facts.Inputs[Merge Join Left Input].Columns[casualty_severity]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
+                      cachedDataType="i1"
                       cachedName="casualty_severity"
                       lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[casualty_severity]" />
                     <inputColumn
@@ -4102,9 +4096,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                     </outputColumn>
                     <outputColumn
                       refId="Package\IMPORT DATA\Add vehicle id to facts.Outputs[Merge Join Output].Columns[&quot;casualty_severity&quot;]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
+                      dataType="i1"
                       lineageId="Package\IMPORT DATA\Add vehicle id to facts.Outputs[Merge Join Output].Columns[&quot;casualty_severity&quot;]"
                       name="&quot;casualty_severity&quot;">
                       <properties>
@@ -5976,6 +5968,113 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               </outputs>
             </component>
             <component
+              refId="Package\IMPORT DATA\Clean data"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Clean data"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\IMPORT DATA\Clean data.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\Clean data.Inputs[Derived Column Input].Columns[date]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\IMPORT DATA\ALL DATA.Outputs[Flat File Source Output].Columns[date]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACE](#{Package\IMPORT DATA\ALL DATA.Outputs[Flat File Source Output].Columns[date]},"\"","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(date,"\"","")</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\Clean data.Inputs[Derived Column Input].Columns[casualty_severity]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="casualty_severity"
+                      lineageId="Package\IMPORT DATA\ALL DATA.Outputs[Flat File Source Output].Columns[casualty_severity]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\IMPORT DATA\Clean data.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Output].Columns[new_casualty_severity]"
+                      dataType="i1"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Output].Columns[new_casualty_severity]"
+                      name="new_casualty_severity"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\IMPORT DATA\ALL DATA.Outputs[Flat File Source Output].Columns[casualty_severity]} == "NA" ? NULL(DT_I1) : (DT_I1)#{Package\IMPORT DATA\ALL DATA.Outputs[Flat File Source Output].Columns[casualty_severity]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">casualty_severity == "NA" ? NULL(DT_I1) : (DT_I1)casualty_severity</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\IMPORT DATA\Clean data.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\IMPORT DATA\Conditional Split"
               componentClassID="Microsoft.ConditionalSplit"
               contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -6392,82 +6491,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       refId="Package\IMPORT DATA\Convert varchar to date.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\IMPORT DATA\Convert varchar to date.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\IMPORT DATA\Delete quotes"
-              componentClassID="Microsoft.DerivedColumn"
-              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Delete quotes"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\IMPORT DATA\Delete quotes.Inputs[Derived Column Input]"
-                  description="Input to the Derived Column Transformation"
-                  name="Derived Column Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\Delete quotes.Inputs[Derived Column Input].Columns[date]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="date"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\IMPORT DATA\ALL DATA.Outputs[Flat File Source Output].Columns[date]"
-                      truncationRowDisposition="FailComponent"
-                      usageType="readWrite">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">[REPLACE](#{Package\IMPORT DATA\ALL DATA.Outputs[Flat File Source Output].Columns[date]},"\"","")</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">REPLACE(["date"],"\"","")</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\IMPORT DATA\Delete quotes.Outputs[Derived Column Output]"
-                  description="Default Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  name="Derived Column Output"
-                  synchronousInputId="Package\IMPORT DATA\Delete quotes.Inputs[Derived Column Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\IMPORT DATA\Delete quotes.Outputs[Derived Column Error Output]"
-                  description="Error Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Derived Column Error Output"
-                  synchronousInputId="Package\IMPORT DATA\Delete quotes.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\Delete quotes.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\IMPORT DATA\Delete quotes.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\IMPORT DATA\Delete quotes.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\IMPORT DATA\Delete quotes.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -7728,9 +7751,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       lineageId="Package\IMPORT DATA\Add casualty id to facts.Outputs[Merge Join Output].Columns[vehicle_id]" />
                     <inputColumn
                       refId="Package\IMPORT DATA\FACT_ACCIDENTS.Inputs[OLE DB Destination Input].Columns[&quot;casualty_severity&quot;]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
+                      cachedDataType="i1"
                       cachedName="&quot;casualty_severity&quot;"
                       externalMetadataColumnId="Package\IMPORT DATA\FACT_ACCIDENTS.Inputs[OLE DB Destination Input].ExternalColumns[casualty_severity]"
                       lineageId="Package\IMPORT DATA\Add casualty id to facts.Outputs[Merge Join Output].Columns[&quot;casualty_severity&quot;]" />
@@ -9231,9 +9252,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                     </inputColumn>
                     <inputColumn
                       refId="Package\IMPORT DATA\Sort.Inputs[Sort Input].Columns[&quot;casualty_severity&quot;]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
+                      cachedDataType="i1"
                       cachedName="&quot;casualty_severity&quot;"
                       lineageId="Package\IMPORT DATA\Add vehicle id to facts.Outputs[Merge Join Output].Columns[&quot;casualty_severity&quot;]">
                       <properties>
@@ -9374,9 +9393,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                     </outputColumn>
                     <outputColumn
                       refId="Package\IMPORT DATA\Sort.Outputs[Sort Output].Columns[&quot;casualty_severity&quot;]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
+                      dataType="i1"
                       lineageId="Package\IMPORT DATA\Sort.Outputs[Sort Output].Columns[&quot;casualty_severity&quot;]"
                       name="&quot;casualty_severity&quot;">
                       <properties>
@@ -9948,9 +9965,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                     </inputColumn>
                     <inputColumn
                       refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[casualty_severity]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
+                      cachedDataType="i1"
                       cachedName="casualty_severity"
                       lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_severity]">
                       <properties>
@@ -10091,9 +10106,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                     </outputColumn>
                     <outputColumn
                       refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[casualty_severity]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
+                      dataType="i1"
                       lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[casualty_severity]"
                       name="casualty_severity">
                       <properties>
@@ -11186,21 +11199,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\IMPORT DATA\Union All.Inputs[Union All Input 2].Columns[casualty_severity]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="casualty_severity"
-                      lineageId="Package\IMPORT DATA\ALL DATA.Outputs[Flat File Source Output].Columns[casualty_severity]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_severity]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\IMPORT DATA\Union All.Inputs[Union All Input 2].Columns[pedestrian_movement]"
                       cachedCodepage="1250"
                       cachedDataType="str"
@@ -11254,6 +11252,19 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                           dataType="System.Int32"
                           description="Output column lineage ID"
                           name="OutputColumnLineageID">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[highway_authority]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\Union All.Inputs[Union All Input 2].Columns[new_casualty_severity]"
+                      cachedDataType="i1"
+                      cachedName="new_casualty_severity"
+                      lineageId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Output].Columns[new_casualty_severity]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_severity]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
@@ -11670,21 +11681,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\IMPORT DATA\Union All.Inputs[Union All Input 1].Columns[casualty_severity]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="casualty_severity"
-                      lineageId="Package\IMPORT DATA\ALL DATA.Outputs[Flat File Source Output].Columns[casualty_severity]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_severity]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\IMPORT DATA\Union All.Inputs[Union All Input 1].Columns[pedestrian_movement]"
                       cachedCodepage="1250"
                       cachedDataType="str"
@@ -11725,6 +11721,19 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                           dataType="System.Int32"
                           description="Output column lineage ID"
                           name="OutputColumnLineageID">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[highway_authority]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\Union All.Inputs[Union All Input 1].Columns[new_casualty_severity]"
+                      cachedDataType="i1"
+                      cachedName="new_casualty_severity"
+                      lineageId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Output].Columns[new_casualty_severity]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_severity]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
@@ -11940,13 +11949,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[age_band_of_casualty]"
                       name="age_band_of_casualty" />
                     <outputColumn
-                      refId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_severity]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_severity]"
-                      name="casualty_severity" />
-                    <outputColumn
                       refId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[pedestrian_movement]"
                       codePage="1250"
                       dataType="str"
@@ -11970,6 +11972,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       length="50"
                       lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[highway_authority]"
                       name="highway_authority" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_severity]"
+                      dataType="i1"
+                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_severity]"
+                      name="casualty_severity" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -12011,7 +12018,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               refId="Package\IMPORT DATA.Paths[Derived Column Output7]"
               endId="Package\IMPORT DATA\Conditional Split 1.Inputs[Conditional Split Input]"
               name="Derived Column Output"
-              startId="Package\IMPORT DATA\Delete quotes.Outputs[Derived Column Output]" />
+              startId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Output]" />
             <path
               refId="Package\IMPORT DATA.Paths[Derived Column Output6]"
               endId="Package\IMPORT DATA\DIM_DATE.Inputs[OLE DB Destination Input]"
@@ -12064,24 +12071,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               startId="Package\IMPORT DATA\Add casualty id to facts.Outputs[Merge Join Output]" />
             <path
               refId="Package\IMPORT DATA.Paths[Merge Join Output1]"
-              endId="Package\IMPORT DATA\Sort.Inputs[Sort Input]"
-              name="Merge Join Output"
-              startId="Package\IMPORT DATA\Add vehicle id to facts.Outputs[Merge Join Output]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Merge Join Output2]"
               endId="Package\IMPORT DATA\DIM_LOCATION.Inputs[OLE DB Destination Input]"
               name="Merge Join Output"
               startId="Package\IMPORT DATA\Merge Join.Outputs[Merge Join Output]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Multicast Output 13]"
-              endId="Package\IMPORT DATA\DIM_VEHICLE.Inputs[OLE DB Destination Input]"
-              name="Multicast Output 1"
-              startId="Package\IMPORT DATA\Multicast vehicles.Outputs[Multicast Output 1]" />
+              refId="Package\IMPORT DATA.Paths[Merge Join Output2]"
+              endId="Package\IMPORT DATA\Sort.Inputs[Sort Input]"
+              name="Merge Join Output"
+              startId="Package\IMPORT DATA\Add vehicle id to facts.Outputs[Merge Join Output]" />
             <path
               refId="Package\IMPORT DATA.Paths[Multicast Output 12]"
               endId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input]"
               name="Multicast Output 1"
               startId="Package\IMPORT DATA\Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Multicast Output 13]"
+              endId="Package\IMPORT DATA\DIM_VEHICLE.Inputs[OLE DB Destination Input]"
+              name="Multicast Output 1"
+              startId="Package\IMPORT DATA\Multicast vehicles.Outputs[Multicast Output 1]" />
             <path
               refId="Package\IMPORT DATA.Paths[Multicast Output 1]"
               endId="Package\IMPORT DATA\DIM_CASUALTIES.Inputs[OLE DB Destination Input]"
@@ -12114,7 +12121,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               startId="Package\IMPORT DATA\Multicast.Outputs[Multicast Output 3]" />
             <path
               refId="Package\IMPORT DATA.Paths[Multicast Output 4]"
-              endId="Package\IMPORT DATA\Delete quotes.Inputs[Derived Column Input]"
+              endId="Package\IMPORT DATA\Clean data.Inputs[Derived Column Input]"
               name="Multicast Output 4"
               startId="Package\IMPORT DATA\Multicast data.Outputs[Multicast Output 4]" />
             <path
@@ -12154,29 +12161,29 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               startId="Package\IMPORT DATA\ADD VEHICLE ID.Outputs[Output 0]" />
             <path
               refId="Package\IMPORT DATA.Paths[Sort Output]"
-              endId="Package\IMPORT DATA\Add vehicle id to facts.Inputs[Merge Join Left Input]"
-              name="Sort Output"
-              startId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Sort Output1]"
               endId="Package\IMPORT DATA\Add casualty id to facts.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\IMPORT DATA\Sort casualties.Outputs[Sort Output]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Sort Output2]"
+              refId="Package\IMPORT DATA.Paths[Sort Output1]"
               endId="Package\IMPORT DATA\Add vehicle id to facts.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\IMPORT DATA\SORT VEHICLES.Outputs[Sort Output]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Sort Output3]"
+              refId="Package\IMPORT DATA.Paths[Sort Output2]"
               endId="Package\IMPORT DATA\Merge Join.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\IMPORT DATA\Sort locations.Outputs[Sort Output]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Sort Output4]"
+              refId="Package\IMPORT DATA.Paths[Sort Output3]"
               endId="Package\IMPORT DATA\Merge Join.Inputs[Merge Join Right Input]"
               name="Sort Output"
               startId="Package\IMPORT DATA\Sort countries.Outputs[Sort Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Sort Output4]"
+              endId="Package\IMPORT DATA\Add vehicle id to facts.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output]" />
             <path
               refId="Package\IMPORT DATA.Paths[Sort Output5]"
               endId="Package\IMPORT DATA\Add casualty id to facts.Inputs[Merge Join Left Input]"
@@ -13050,8 +13057,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           Id="Package\IMPORT DATA\Aggregate time"
           TopLeft="434,601" />
         <NodeLayout
-          Size="144,42"
-          Id="Package\IMPORT DATA\Delete quotes"
+          Size="129,42"
+          Id="Package\IMPORT DATA\Clean data"
           TopLeft="283,155" />
         <NodeLayout
           Size="144,42"
@@ -13292,41 +13299,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Sort Output5]"
-          TopLeft="165,780">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="124.333333333333,143"
-              Start="0,0"
-              End="124.333333333333,135.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,81.0797481636936" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,81.0797481636936"
-                    Point2="0,85.0797481636936"
-                    Point3="4,85.0797481636936" />
-                  <mssgle:LineSegment
-                    End="120.333333333333,85.0797481636936" />
-                  <mssgle:CubicBezierSegment
-                    Point1="120.333333333333,85.0797481636936"
-                    Point2="124.333333333333,85.0797481636936"
-                    Point3="124.333333333333,89.0797481636936" />
-                  <mssgle:LineSegment
-                    End="124.333333333333,135.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Sort Output4]"
+          Id="Package\IMPORT DATA.Paths[Sort Output3]"
           TopLeft="1387,272">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -13360,7 +13333,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Sort Output3]"
+          Id="Package\IMPORT DATA.Paths[Sort Output2]"
           TopLeft="1213.5,274">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -13394,7 +13367,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Sort Output2]"
+          Id="Package\IMPORT DATA.Paths[Sort Output1]"
           TopLeft="249,400">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -13428,7 +13401,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Sort Output1]"
+          Id="Package\IMPORT DATA.Paths[Sort Output]"
           TopLeft="1143,938.666666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -13441,40 +13414,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="-721.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Sort Output]"
-          TopLeft="385.5,596">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-192.833333333333,52"
-              Start="0,0"
-              End="-192.833333333333,44.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26.9295774647887" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26.9295774647887"
-                    Point2="0,30.9295774647887"
-                    Point3="-4,30.9295774647887" />
-                  <mssgle:LineSegment
-                    End="-188.833333333333,30.9295774647887" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-188.833333333333,30.9295774647887"
-                    Point2="-192.833333333333,30.9295774647887"
-                    Point3="-192.833333333333,34.9295774647887" />
-                  <mssgle:LineSegment
-                    End="-192.833333333333,44.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -13707,9 +13646,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-95,48"
+              EndConnector="-102.5,48"
               Start="0,0"
-              End="-95,40.5">
+              End="-102.5,40.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -13720,13 +13659,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                     Point2="0,24"
                     Point3="-4,24" />
                   <mssgle:LineSegment
-                    End="-91,24" />
+                    End="-98.5,24" />
                   <mssgle:CubicBezierSegment
-                    Point1="-91,24"
-                    Point2="-95,24"
-                    Point3="-95,28" />
+                    Point1="-98.5,24"
+                    Point2="-102.5,24"
+                    Point3="-102.5,28" />
                   <mssgle:LineSegment
-                    End="-95,40.5" />
+                    End="-102.5,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -13990,7 +13929,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Merge Join Output2]"
+          Id="Package\IMPORT DATA.Paths[Merge Join Output1]"
           TopLeft="1274,357">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -14015,28 +13954,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                     Point3="25.5,18" />
                   <mssgle:LineSegment
                     End="25.5,20.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Merge Join Output1]"
-          TopLeft="164.25,690">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48"
-              Start="0,0"
-              End="0,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14149,30 +14066,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\IMPORT DATA.Paths[Derived Column Output7]"
-          TopLeft="427,176">
+          TopLeft="412,176">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="29.5,33"
+              EndConnector="44.5,27.3333333333333"
               Start="0,0"
-              End="22,33">
+              End="37,27.3333333333333">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="10.75,0" />
+                    End="21.7201834862385,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="10.75,0"
-                    Point2="14.75,0"
-                    Point3="14.75,4" />
+                    Point1="21.7201834862385,0"
+                    Point2="25.7201834862385,0"
+                    Point3="25.7201834862385,4" />
                   <mssgle:LineSegment
-                    End="14.75,29" />
+                    End="25.7201834862385,23.3333333333333" />
                   <mssgle:CubicBezierSegment
-                    Point1="14.75,29"
-                    Point2="14.75,33"
-                    Point3="18.75,33" />
+                    Point1="25.7201834862385,23.3333333333333"
+                    Point2="25.7201834862385,27.3333333333333"
+                    Point3="29.7201834862385,27.3333333333333" />
                   <mssgle:LineSegment
-                    End="22,33" />
+                    End="37,27.3333333333333" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14591,6 +14508,96 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IMPORT DATA.Paths[Sort Output4]"
+          TopLeft="385.5,596">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-192.833333333333,52"
+              Start="0,0"
+              End="-192.833333333333,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.9295774647887" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.9295774647887"
+                    Point2="0,30.9295774647887"
+                    Point3="-4,30.9295774647887" />
+                  <mssgle:LineSegment
+                    End="-188.833333333333,30.9295774647887" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-188.833333333333,30.9295774647887"
+                    Point2="-192.833333333333,30.9295774647887"
+                    Point3="-192.833333333333,34.9295774647887" />
+                  <mssgle:LineSegment
+                    End="-192.833333333333,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IMPORT DATA.Paths[Merge Join Output2]"
+          TopLeft="164.25,690">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IMPORT DATA.Paths[Sort Output5]"
+          TopLeft="165,780">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="154.5,143"
+              Start="0,0"
+              End="154.5,135.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,67.5"
+                    Point2="0,71.5"
+                    Point3="4,71.5" />
+                  <mssgle:LineSegment
+                    End="150.5,71.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="150.5,71.5"
+                    Point2="154.5,71.5"
+                    Point3="154.5,75.5" />
+                  <mssgle:LineSegment
+                    End="154.5,135.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
