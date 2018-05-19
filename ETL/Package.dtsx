@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="178"
-  DTS:VersionGUID="{21768B32-7E13-4A2D-8A79-00BF39855AA1}">
+  DTS:VersionBuild="180"
+  DTS:VersionGUID="{1F4F7A5A-F355-4202-9779-7CD521800A72}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -718,6 +718,23 @@
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\Add primary keys to dimensions"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{72188166-8D19-4E2B-AC4B-4F030AB8ECCB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add primary keys to dimensions"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{44BB7860-B10C-4A53-BEE1-CD1990E4E356}"
+          SQLTask:SqlStatementSource="ALTER TABLE DIM_VEHICLE&#xA;ADD PRIMARY KEY (id);&#xA;&#xA;ALTER TABLE DIM_CASUALTY&#xA;ADD PRIMARY KEY (id);&#xA;&#xA;ALTER TABLE DIM_DATE&#xA;ADD PRIMARY KEY (primary_key);&#xA;&#xA;ALTER TABLE DIM_TIME&#xA;ADD PRIMARY KEY (primary_key);&#xA;&#xA;ALTER TABLE DIM_CONDITIONS&#xA;ADD PRIMARY KEY (primary_key);&#xA;&#xA;ALTER TABLE DIM_LOCATION&#xA;ADD PRIMARY KEY (highway_authority);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\CREATE DIM_CASUALTY"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
@@ -748,7 +765,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{44BB7860-B10C-4A53-BEE1-CD1990E4E356}"
-          SQLTask:SqlStatementSource="CREATE TABLE DIM_CONDITIONS(&#xA;&#x9;primary_key char(6),&#xA;&#x9;speed_limit int,&#xA;&#x9;junction_detail varchar,&#xA;&#x9;junction_control varchar,&#xA;&#x9;light_conditions varchar,&#xA;&#x9;weather_conditions varchar,&#xA;&#x9;urban_or_rural_area varchar&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="CREATE TABLE DIM_CONDITIONS(&#xA;&#x9;primary_key char(6) NOT NULL,&#xA;&#x9;speed_limit int NOT NULL,&#xA;&#x9;junction_detail varchar NOT NULL,&#xA;&#x9;junction_control varchar NOT NULL,&#xA;&#x9;light_conditions varchar NOT NULL,&#xA;&#x9;weather_conditions varchar NOT NULL,&#xA;&#x9;urban_or_rural_area varchar NOT NULL&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -953,22 +970,6 @@
         <SQLTask:SqlTaskData
           SQLTask:Connection="{44BB7860-B10C-4A53-BEE1-CD1990E4E356}"
           SQLTask:SqlStatementSource="IF EXISTS (&#xA;&#x9;SELECT * &#xA;&#x9;FROM INFORMATION_SCHEMA.TABLES &#xA;&#x9;WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'FACT_ACCIDENTS'&#xA;) DROP TABLE FACT_ACCIDENTS;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Execute SQL Task"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
-      DTS:DTSID="{72188166-8D19-4E2B-AC4B-4F030AB8ECCB}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Execute SQL Task"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -12304,7 +12305,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       DTS:From="Package\IMPORT DATA"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 9"
-      DTS:To="Package\Execute SQL Task" />
+      DTS:To="Package\Add primary keys to dimensions" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -12319,9 +12320,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
         <NodeLayout
-          Size="163,42"
-          Id="Package\Execute SQL Task"
-          TopLeft="907,142" />
+          Size="229,42"
+          Id="Package\Add primary keys to dimensions"
+          TopLeft="968,132" />
         <NodeLayout
           Size="147,42"
           Id="Package\IMPORT DATA"
@@ -12400,26 +12401,26 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="183,52"
+              EndConnector="277,42"
               Start="0,0"
-              End="183,44.5">
+              End="277,34.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22" />
+                    End="0,17" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,22"
-                    Point2="0,26"
-                    Point3="4,26" />
+                    Point1="0,17"
+                    Point2="0,21"
+                    Point3="4,21" />
                   <mssgle:LineSegment
-                    End="179,26" />
+                    End="273,21" />
                   <mssgle:CubicBezierSegment
-                    Point1="179,26"
-                    Point2="183,26"
-                    Point3="183,30" />
+                    Point1="273,21"
+                    Point2="277,21"
+                    Point3="277,25" />
                   <mssgle:LineSegment
-                    End="183,44.5" />
+                    End="277,34.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
