@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="180"
-  DTS:VersionGUID="{1F4F7A5A-F355-4202-9779-7CD521800A72}">
+  DTS:VersionBuild="181"
+  DTS:VersionGUID="{7BB5D930-AB12-458D-BACB-8C0F628E9C48}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -717,6 +717,23 @@
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Add foreign keys to facts"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B9B14FC4-0B37-44E2-A8C5-72E7920683E1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add foreign keys to facts"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{44BB7860-B10C-4A53-BEE1-CD1990E4E356}"
+          SQLTask:SqlStatementSource="ALTER TABLE FACT_ACCIDENTS&#xA;ADD FOREIGN KEY (vehicle_id) REFERENCES DIM_VEHICLE(id);&#xA;&#xA;ALTER TABLE FACT_ACCIDENTS&#xA;ADD FOREIGN KEY (casualty_id) REFERENCES DIM_CASUALTY(id);&#xA;&#xA;ALTER TABLE FACT_ACCIDENTS&#xA;ADD FOREIGN KEY (date) REFERENCES DIM_DATE(primary_key);&#xA;&#xA;ALTER TABLE FACT_ACCIDENTS&#xA;ADD FOREIGN KEY (time) REFERENCES DIM_TIME(primary_key);&#xA;&#xA;ALTER TABLE FACT_ACCIDENTS&#xA;ADD FOREIGN KEY (conditions) REFERENCES DIM_CONDITIONS(primary_key);&#xA;&#xA;ALTER TABLE FACT_ACCIDENTS&#xA;ADD FOREIGN KEY (location) REFERENCES DIM_LOCATION(highway_authority);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Add primary keys to dimensions"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
@@ -11992,44 +12009,44 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               startId="Package\IMPORT DATA\GROUP CASUALTIES.Outputs[Aggregate Output 1]" />
             <path
               refId="Package\IMPORT DATA.Paths[Derived Column Output7]"
-              endId="Package\IMPORT DATA\Union All.Inputs[Union All Input 2]"
+              endId="Package\IMPORT DATA\Conditional Split 1.Inputs[Conditional Split Input]"
               name="Derived Column Output"
-              startId="Package\IMPORT DATA\Convert HYD to date.Outputs[Derived Column Output]" />
+              startId="Package\IMPORT DATA\Delete quotes.Outputs[Derived Column Output]" />
             <path
               refId="Package\IMPORT DATA.Paths[Derived Column Output6]"
-              endId="Package\IMPORT DATA\Sort locations.Inputs[Sort Input]"
-              name="Derived Column Output"
-              startId="Package\IMPORT DATA\Derived Column.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output5]"
-              endId="Package\IMPORT DATA\Multicast.Inputs[Multicast Input 1]"
-              name="Derived Column Output"
-              startId="Package\IMPORT DATA\Add datetime keys.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output4]"
-              endId="Package\IMPORT DATA\Union All.Inputs[Union All Input 1]"
-              name="Derived Column Output"
-              startId="Package\IMPORT DATA\Convert varchar to date.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output3]"
-              endId="Package\IMPORT DATA\Convert HYD to date.Inputs[Derived Column Input]"
-              name="Derived Column Output"
-              startId="Package\IMPORT DATA\Convert HYD to int.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output2]"
-              endId="Package\IMPORT DATA\DIM_TIME.Inputs[OLE DB Destination Input]"
-              name="Derived Column Output"
-              startId="Package\IMPORT DATA\Add new time columns.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output1]"
               endId="Package\IMPORT DATA\DIM_DATE.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
               startId="Package\IMPORT DATA\Add new date columns.Outputs[Derived Column Output]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output]"
-              endId="Package\IMPORT DATA\Conditional Split 1.Inputs[Conditional Split Input]"
+              refId="Package\IMPORT DATA.Paths[Derived Column Output5]"
+              endId="Package\IMPORT DATA\DIM_TIME.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\IMPORT DATA\Delete quotes.Outputs[Derived Column Output]" />
+              startId="Package\IMPORT DATA\Add new time columns.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Derived Column Output4]"
+              endId="Package\IMPORT DATA\Convert HYD to date.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\IMPORT DATA\Convert HYD to int.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Derived Column Output3]"
+              endId="Package\IMPORT DATA\Union All.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\IMPORT DATA\Convert varchar to date.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Derived Column Output2]"
+              endId="Package\IMPORT DATA\Multicast.Inputs[Multicast Input 1]"
+              name="Derived Column Output"
+              startId="Package\IMPORT DATA\Add datetime keys.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Derived Column Output1]"
+              endId="Package\IMPORT DATA\Sort locations.Inputs[Sort Input]"
+              name="Derived Column Output"
+              startId="Package\IMPORT DATA\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Derived Column Output]"
+              endId="Package\IMPORT DATA\Union All.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\IMPORT DATA\Convert HYD to date.Outputs[Derived Column Output]" />
             <path
               refId="Package\IMPORT DATA.Paths[Flat File Source Output]"
               endId="Package\IMPORT DATA\Multicast data.Inputs[Multicast Input 1]"
@@ -12057,24 +12074,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               startId="Package\IMPORT DATA\Merge Join.Outputs[Merge Join Output]" />
             <path
               refId="Package\IMPORT DATA.Paths[Multicast Output 13]"
-              endId="Package\IMPORT DATA\DIM_CASUALTIES.Inputs[OLE DB Destination Input]"
+              endId="Package\IMPORT DATA\DIM_VEHICLE.Inputs[OLE DB Destination Input]"
               name="Multicast Output 1"
-              startId="Package\IMPORT DATA\Multicast casualties.Outputs[Multicast Output 1]" />
+              startId="Package\IMPORT DATA\Multicast vehicles.Outputs[Multicast Output 1]" />
             <path
               refId="Package\IMPORT DATA.Paths[Multicast Output 12]"
-              endId="Package\IMPORT DATA\GROUP VEHICLES.Inputs[Aggregate Input 1]"
-              name="Multicast Output 1"
-              startId="Package\IMPORT DATA\Multicast data.Outputs[Multicast Output 1]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Multicast Output 1]"
               endId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input]"
               name="Multicast Output 1"
               startId="Package\IMPORT DATA\Multicast.Outputs[Multicast Output 1]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Multicast Output 11]"
-              endId="Package\IMPORT DATA\DIM_VEHICLE.Inputs[OLE DB Destination Input]"
+              refId="Package\IMPORT DATA.Paths[Multicast Output 1]"
+              endId="Package\IMPORT DATA\DIM_CASUALTIES.Inputs[OLE DB Destination Input]"
               name="Multicast Output 1"
-              startId="Package\IMPORT DATA\Multicast vehicles.Outputs[Multicast Output 1]" />
+              startId="Package\IMPORT DATA\Multicast casualties.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Multicast Output 11]"
+              endId="Package\IMPORT DATA\GROUP VEHICLES.Inputs[Aggregate Input 1]"
+              name="Multicast Output 1"
+              startId="Package\IMPORT DATA\Multicast data.Outputs[Multicast Output 1]" />
             <path
               refId="Package\IMPORT DATA.Paths[Multicast Output 3]"
               endId="Package\IMPORT DATA\LEAVE DATA WITH CASUALTIES.Inputs[Conditional Split Input]"
@@ -12211,6 +12228,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       DTS:ObjectName="Constraint 1 1"
       DTS:To="Package\CREATE DIM_CASUALTY" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{264D8179-3B34-44D5-8B2C-3D8F745CC4B3}"
+      DTS:From="Package\Add primary keys to dimensions"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Add foreign keys to facts" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
       DTS:DTSID="{D22B92E0-5177-4ADB-83C9-E965E4FC2162}"
@@ -12320,10 +12345,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
         <NodeLayout
-          Size="229,42"
-          Id="Package\Add primary keys to dimensions"
-          TopLeft="968,132" />
-        <NodeLayout
           Size="147,42"
           Id="Package\IMPORT DATA"
           TopLeft="732,48" />
@@ -12397,30 +12418,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="805.5,90">
+          TopLeft="879,69">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="277,42"
+              EndConnector="89,35"
               Start="0,0"
-              End="277,34.5">
+              End="81.5,35">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17" />
+                    End="40.5,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,17"
-                    Point2="0,21"
-                    Point3="4,21" />
+                    Point1="40.5,0"
+                    Point2="44.5,0"
+                    Point3="44.5,4" />
                   <mssgle:LineSegment
-                    End="273,21" />
+                    End="44.5,31" />
                   <mssgle:CubicBezierSegment
-                    Point1="273,21"
-                    Point2="277,21"
-                    Point3="277,25" />
+                    Point1="44.5,31"
+                    Point2="44.5,35"
+                    Point3="48.5,35" />
                   <mssgle:LineSegment
-                    End="277,34.5" />
+                    End="81.5,35" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -12941,6 +12962,51 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             <s:String>Package.PrecedenceConstraints[Constraint 3 1]</s:String>
             <s:String>Package.PrecedenceConstraints[Constraint 4 1]</s:String>
             <s:String>Package.PrecedenceConstraints[Constraint 5 1]</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Add primary keys to dimensions"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Add foreign keys to facts"
+          TopLeft="19.5,105.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="118.75,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <GroupLayout
+          Text="Add integrity"
+          ParentId="Package"
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="240,200"
+          Size="240,243"
+          Id="98eac926-f709-4a16-a4ea-1bbb2b4959c1"
+          TopLeft="962.5,33.5">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\Add primary keys to dimensions</s:String>
+            <s:String>Package\Add foreign keys to facts</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 10]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
       </GraphLayout>
@@ -13801,30 +13867,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\IMPORT DATA.Paths[Multicast Output 13]"
-          TopLeft="1093.33333333333,450">
+          TopLeft="71.25,344">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="130.666666666667,37"
+              EndConnector="0,47"
               Start="0,0"
-              End="130.666666666667,29.5">
+              End="0,39.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11.0082063305979" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.0082063305979"
-                    Point2="0,15.0082063305979"
-                    Point3="4,15.0082063305979" />
-                  <mssgle:LineSegment
-                    End="126.666666666667,15.0082063305979" />
-                  <mssgle:CubicBezierSegment
-                    Point1="126.666666666667,15.0082063305979"
-                    Point2="130.666666666667,15.0082063305979"
-                    Point3="130.666666666667,19.0082063305979" />
-                  <mssgle:LineSegment
-                    End="130.666666666667,29.5" />
+                    End="0,39.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -13835,6 +13889,40 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\IMPORT DATA.Paths[Multicast Output 12]"
+          TopLeft="554,551">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-99,24"
+              Start="0,0"
+              End="-91.5,24">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-45.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-45.5,0"
+                    Point2="-49.5,0"
+                    Point3="-49.5,4" />
+                  <mssgle:LineSegment
+                    End="-49.5,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-49.5,20"
+                    Point2="-49.5,24"
+                    Point3="-53.5,24" />
+                  <mssgle:LineSegment
+                    End="-91.5,24" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IMPORT DATA.Paths[Multicast Output 11]"
           TopLeft="416,107">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -13868,53 +13956,31 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Multicast Output 11]"
-          TopLeft="71.25,344">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,47"
-              Start="0,0"
-              End="0,39.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\IMPORT DATA.Paths[Multicast Output 1]"
-          TopLeft="554,551">
+          TopLeft="1093.33333333333,450">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-99,24"
+              EndConnector="130.666666666667,37"
               Start="0,0"
-              End="-91.5,24">
+              End="130.666666666667,29.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-45.5,0" />
+                    End="0,11.0082063305979" />
                   <mssgle:CubicBezierSegment
-                    Point1="-45.5,0"
-                    Point2="-49.5,0"
-                    Point3="-49.5,4" />
+                    Point1="0,11.0082063305979"
+                    Point2="0,15.0082063305979"
+                    Point3="4,15.0082063305979" />
                   <mssgle:LineSegment
-                    End="-49.5,20" />
+                    End="126.666666666667,15.0082063305979" />
                   <mssgle:CubicBezierSegment
-                    Point1="-49.5,20"
-                    Point2="-49.5,24"
-                    Point3="-53.5,24" />
+                    Point1="126.666666666667,15.0082063305979"
+                    Point2="130.666666666667,15.0082063305979"
+                    Point3="130.666666666667,19.0082063305979" />
                   <mssgle:LineSegment
-                    End="-91.5,24" />
+                    End="130.666666666667,29.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14083,24 +14149,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\IMPORT DATA.Paths[Derived Column Output7]"
-          TopLeft="513,377">
+          TopLeft="427,176">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="59.1666666666666,33"
+              EndConnector="29.5,33"
               Start="0,0"
-              End="59.1666666666666,25.5">
+              End="22,33">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="55.1666666666666,0" />
+                    End="10.75,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="55.1666666666666,0"
-                    Point2="59.1666666666666,0"
-                    Point3="59.1666666666666,4" />
+                    Point1="10.75,0"
+                    Point2="14.75,0"
+                    Point3="14.75,4" />
                   <mssgle:LineSegment
-                    End="59.1666666666666,25.5" />
+                    End="14.75,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.75,29"
+                    Point2="14.75,33"
+                    Point3="18.75,33" />
+                  <mssgle:LineSegment
+                    End="22,33" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14111,170 +14183,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\IMPORT DATA.Paths[Derived Column Output6]"
-          TopLeft="1227,200">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-13.5,32"
-              Start="0,0"
-              End="-13.5,24.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,12" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12"
-                    Point2="0,16"
-                    Point3="-4,16" />
-                  <mssgle:LineSegment
-                    End="-9.5,16" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-9.5,16"
-                    Point2="-13.5,16"
-                    Point3="-13.5,20" />
-                  <mssgle:LineSegment
-                    End="-13.5,24.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Derived Column Output5]"
-          TopLeft="594.5,496">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="19.5,34"
-              Start="0,0"
-              End="19.5,26.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="15.5,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="15.5,0"
-                    Point2="19.5,0"
-                    Point3="19.5,4" />
-                  <mssgle:LineSegment
-                    End="19.5,26.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Derived Column Output4]"
-          TopLeft="543,303">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="66.8333333333334,107"
-              Start="0,0"
-              End="66.8333333333334,99.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,59.3621533442088" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,59.3621533442088"
-                    Point2="0,63.3621533442088"
-                    Point3="4,63.3621533442088" />
-                  <mssgle:LineSegment
-                    End="62.8333333333334,63.3621533442088" />
-                  <mssgle:CubicBezierSegment
-                    Point1="62.8333333333334,63.3621533442088"
-                    Point2="66.8333333333334,63.3621533442088"
-                    Point3="66.8333333333334,67.3621533442088" />
-                  <mssgle:LineSegment
-                    End="66.8333333333334,99.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Derived Column Output3]"
-          TopLeft="285,290">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="140,66"
-              Start="0,0"
-              End="140,58.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,29" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,29"
-                    Point2="0,33"
-                    Point3="4,33" />
-                  <mssgle:LineSegment
-                    End="136,33" />
-                  <mssgle:CubicBezierSegment
-                    Point1="136,33"
-                    Point2="140,33"
-                    Point3="140,37" />
-                  <mssgle:LineSegment
-                    End="140,58.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Derived Column Output2]"
-          TopLeft="512,807">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="12.5,24"
-              Start="0,0"
-              End="12.5,16.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,8" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,8"
-                    Point2="0,12"
-                    Point3="4,12" />
-                  <mssgle:LineSegment
-                    End="8.5,12" />
-                  <mssgle:CubicBezierSegment
-                    Point1="8.5,12"
-                    Point2="12.5,12"
-                    Point3="12.5,16" />
-                  <mssgle:LineSegment
-                    End="12.5,16.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Derived Column Output1]"
           TopLeft="696.5,804">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -14308,31 +14216,189 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Derived Column Output]"
-          TopLeft="427,176">
+          Id="Package\IMPORT DATA.Paths[Derived Column Output5]"
+          TopLeft="512,807">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="29.5,33"
+              EndConnector="12.5,24"
               Start="0,0"
-              End="22,33">
+              End="12.5,16.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="10.75,0" />
+                    End="0,8" />
                   <mssgle:CubicBezierSegment
-                    Point1="10.75,0"
-                    Point2="14.75,0"
-                    Point3="14.75,4" />
+                    Point1="0,8"
+                    Point2="0,12"
+                    Point3="4,12" />
                   <mssgle:LineSegment
-                    End="14.75,29" />
+                    End="8.5,12" />
                   <mssgle:CubicBezierSegment
-                    Point1="14.75,29"
-                    Point2="14.75,33"
-                    Point3="18.75,33" />
+                    Point1="8.5,12"
+                    Point2="12.5,12"
+                    Point3="12.5,16" />
                   <mssgle:LineSegment
-                    End="22,33" />
+                    End="12.5,16.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IMPORT DATA.Paths[Derived Column Output4]"
+          TopLeft="285,290">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="140,66"
+              Start="0,0"
+              End="140,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29"
+                    Point2="0,33"
+                    Point3="4,33" />
+                  <mssgle:LineSegment
+                    End="136,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="136,33"
+                    Point2="140,33"
+                    Point3="140,37" />
+                  <mssgle:LineSegment
+                    End="140,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IMPORT DATA.Paths[Derived Column Output3]"
+          TopLeft="543,303">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="66.8333333333334,107"
+              Start="0,0"
+              End="66.8333333333334,99.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.3621533442088" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,59.3621533442088"
+                    Point2="0,63.3621533442088"
+                    Point3="4,63.3621533442088" />
+                  <mssgle:LineSegment
+                    End="62.8333333333334,63.3621533442088" />
+                  <mssgle:CubicBezierSegment
+                    Point1="62.8333333333334,63.3621533442088"
+                    Point2="66.8333333333334,63.3621533442088"
+                    Point3="66.8333333333334,67.3621533442088" />
+                  <mssgle:LineSegment
+                    End="66.8333333333334,99.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IMPORT DATA.Paths[Derived Column Output2]"
+          TopLeft="594.5,496">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.5,34"
+              Start="0,0"
+              End="19.5,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="15.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.5,0"
+                    Point2="19.5,0"
+                    Point3="19.5,4" />
+                  <mssgle:LineSegment
+                    End="19.5,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IMPORT DATA.Paths[Derived Column Output1]"
+          TopLeft="1227,200">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13.5,32"
+              Start="0,0"
+              End="-13.5,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12"
+                    Point2="0,16"
+                    Point3="-4,16" />
+                  <mssgle:LineSegment
+                    End="-9.5,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.5,16"
+                    Point2="-13.5,16"
+                    Point3="-13.5,20" />
+                  <mssgle:LineSegment
+                    End="-13.5,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IMPORT DATA.Paths[Derived Column Output]"
+          TopLeft="513,377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59.1666666666666,33"
+              Start="0,0"
+              End="59.1666666666666,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="55.1666666666666,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="55.1666666666666,0"
+                    Point2="59.1666666666666,0"
+                    Point3="59.1666666666666,4" />
+                  <mssgle:LineSegment
+                    End="59.1666666666666,25.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
