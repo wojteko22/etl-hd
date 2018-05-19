@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="169"
-  DTS:VersionGUID="{23B2515D-B570-4F73-84EB-3870CCDE4FD3}">
+  DTS:VersionBuild="172"
+  DTS:VersionGUID="{FC40CDB1-3756-4152-8119-4A434CA8ABD1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -895,7 +895,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{44BB7860-B10C-4A53-BEE1-CD1990E4E356}"
-          SQLTask:SqlStatementSource="CREATE TABLE FACT_ACCIDENTS(&#xA;&#x9;id int,&#xA;&#x9;accident_index varchar(15) NOT NULL,&#xA;&#x9;vehicle_id int NOT NULL,&#xA;&#x9;casualty_id int,&#xA;&#x9;casualty_severity varchar(4),&#xA;&#x9;date int NOT NULL,&#xA;&#x9;time int,&#xA;&#x9;conditions int,&#xA;&#x9;highway_authority varchar(50) NOT NULL &#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="CREATE TABLE FACT_ACCIDENTS(&#xA;&#x9;id int IDENTITY(1,1),&#xA;&#x9;accident_index varchar(15) NOT NULL,&#xA;&#x9;vehicle_id int NOT NULL,&#xA;&#x9;casualty_id int,&#xA;&#x9;casualty_severity varchar(4),&#xA;&#x9;date int NOT NULL,&#xA;&#x9;time int,&#xA;&#x9;conditions char(6) NOT NULL,&#xA;&#x9;highway_authority varchar(50) NOT NULL &#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -2155,6 +2155,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                       cachedLength="50"
                       cachedName="highway_authority"
                       lineageId="Package\IMPORT DATA\Sort.Outputs[Sort Output].Columns[highway_authority]" />
+                    <inputColumn
+                      refId="Package\IMPORT DATA\Add casualty id to facts.Inputs[Merge Join Left Input].Columns[conditions_key]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="conditions_key"
+                      lineageId="Package\IMPORT DATA\Sort.Outputs[Sort Output].Columns[conditions_key]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -2290,6 +2297,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                           dataType="System.Int32"
                           description="The input column associated with this output column"
                           name="InputColumnID">#{Package\IMPORT DATA\Add casualty id to facts.Inputs[Merge Join Left Input].Columns[highway_authority]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\IMPORT DATA\Add casualty id to facts.Outputs[Merge Join Output].Columns[conditions_key]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\Add casualty id to facts.Outputs[Merge Join Output].Columns[conditions_key]"
+                      name="conditions_key">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\IMPORT DATA\Add casualty id to facts.Inputs[Merge Join Left Input].Columns[conditions_key]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -4031,6 +4053,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       cachedLength="50"
                       cachedName="highway_authority"
                       lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[highway_authority]" />
+                    <inputColumn
+                      refId="Package\IMPORT DATA\Add vehicle id to facts.Inputs[Merge Join Left Input].Columns[conditions_key]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="conditions_key"
+                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[conditions_key]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -4168,6 +4197,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                           dataType="System.Int32"
                           description="The input column associated with this output column"
                           name="InputColumnID">#{Package\IMPORT DATA\Add vehicle id to facts.Inputs[Merge Join Left Input].Columns[highway_authority]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\IMPORT DATA\Add vehicle id to facts.Outputs[Merge Join Output].Columns[conditions_key]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\Add vehicle id to facts.Outputs[Merge Join Output].Columns[conditions_key]"
+                      name="conditions_key">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\IMPORT DATA\Add vehicle id to facts.Inputs[Merge Join Left Input].Columns[conditions_key]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -7744,6 +7788,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       cachedName="highway_authority"
                       externalMetadataColumnId="Package\IMPORT DATA\FACT_ACCIDENTS.Inputs[OLE DB Destination Input].ExternalColumns[highway_authority]"
                       lineageId="Package\IMPORT DATA\Add casualty id to facts.Outputs[Merge Join Output].Columns[highway_authority]" />
+                    <inputColumn
+                      refId="Package\IMPORT DATA\FACT_ACCIDENTS.Inputs[OLE DB Destination Input].Columns[conditions_key]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="conditions_key"
+                      externalMetadataColumnId="Package\IMPORT DATA\FACT_ACCIDENTS.Inputs[OLE DB Destination Input].ExternalColumns[conditions]"
+                      lineageId="Package\IMPORT DATA\Add casualty id to facts.Outputs[Merge Join Output].Columns[conditions_key]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -9289,6 +9341,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                           name="NewSortKeyPosition">0</property>
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\Sort.Inputs[Sort Input].Columns[conditions_key]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="conditions_key"
+                      lineageId="Package\IMPORT DATA\Add vehicle id to facts.Outputs[Merge Join Output].Columns[conditions_key]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -9398,6 +9468,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
                           name="SortColumnId">#{Package\IMPORT DATA\Add vehicle id to facts.Outputs[Merge Join Output].Columns[highway_authority]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\IMPORT DATA\Sort.Outputs[Sort Output].Columns[conditions_key]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\Sort.Outputs[Sort Output].Columns[conditions_key]"
+                      name="conditions_key">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\IMPORT DATA\Add vehicle id to facts.Outputs[Merge Join Output].Columns[conditions_key]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -9870,384 +9955,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[vehicle_type]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="vehicle_type"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[vehicle_type]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[towing_and_articulation]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="towing_and_articulation"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[towing_and_articulation]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[vehicle_manoeuvre]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="vehicle_manoeuvre"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[vehicle_manoeuvre]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[junction_location]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="junction_location"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[junction_location]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[was_vehicle_left_hand_drive?]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="was_vehicle_left_hand_drive?"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[was_vehicle_left_hand_drive?]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[journey_purpose_of_driver]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="journey_purpose_of_driver"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[journey_purpose_of_driver]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[sex_of_driver]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="sex_of_driver"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[sex_of_driver]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[age_of_driver]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="age_of_driver"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[age_of_driver]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[age_band_of_driver]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="age_band_of_driver"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[age_band_of_driver]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[propulsion_code]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="propulsion_code"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[propulsion_code]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[age_of_vehicle]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="age_of_vehicle"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[age_of_vehicle]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[date]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="date"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[date]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[day_of_week]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="day_of_week"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[day_of_week]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[time]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="time"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[time]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[local_authority_(district)]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="local_authority_(district)"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[local_authority_(district)]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[speed_limit]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="speed_limit"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[speed_limit]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[junction_detail]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="junction_detail"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[junction_detail]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[junction_control]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="junction_control"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[junction_control]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[light_conditions]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="light_conditions"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[light_conditions]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[weather_conditions]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="weather_conditions"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[weather_conditions]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[urban_or_rural_area]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="urban_or_rural_area"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[urban_or_rural_area]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[casualty_reference]"
                       cachedCodepage="1250"
                       cachedDataType="str"
@@ -10266,102 +9973,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[casualty_class]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="casualty_class"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_class]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[sex_of_casualty]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="sex_of_casualty"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[sex_of_casualty]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[age_of_casualty]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="age_of_casualty"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[age_of_casualty]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[age_band_of_casualty]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="age_band_of_casualty"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[age_band_of_casualty]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[casualty_severity]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="casualty_severity"
                       lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_severity]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[pedestrian_movement]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="pedestrian_movement"
-                      lineageId="Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[pedestrian_movement]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -10423,6 +10040,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                           name="NewSortKeyPosition">0</property>
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input].Columns[conditions_key]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="conditions_key"
+                      lineageId="Package\IMPORT DATA\Add datetime keys.Outputs[Derived Column Output].Columns[conditions_key]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -10466,321 +10101,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[vehicle_type]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[vehicle_type]"
-                      name="vehicle_type">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[vehicle_type]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[towing_and_articulation]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[towing_and_articulation]"
-                      name="towing_and_articulation">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[towing_and_articulation]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[vehicle_manoeuvre]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[vehicle_manoeuvre]"
-                      name="vehicle_manoeuvre">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[vehicle_manoeuvre]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[junction_location]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[junction_location]"
-                      name="junction_location">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[junction_location]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[was_vehicle_left_hand_drive?]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[was_vehicle_left_hand_drive?]"
-                      name="was_vehicle_left_hand_drive?">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[was_vehicle_left_hand_drive?]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[journey_purpose_of_driver]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[journey_purpose_of_driver]"
-                      name="journey_purpose_of_driver">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[journey_purpose_of_driver]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[sex_of_driver]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[sex_of_driver]"
-                      name="sex_of_driver">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[sex_of_driver]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[age_of_driver]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[age_of_driver]"
-                      name="age_of_driver">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[age_of_driver]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[age_band_of_driver]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[age_band_of_driver]"
-                      name="age_band_of_driver">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[age_band_of_driver]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[propulsion_code]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[propulsion_code]"
-                      name="propulsion_code">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[propulsion_code]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[age_of_vehicle]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[age_of_vehicle]"
-                      name="age_of_vehicle">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[age_of_vehicle]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[date]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[date]"
-                      name="date">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[date]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[day_of_week]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[day_of_week]"
-                      name="day_of_week">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[day_of_week]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[time]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[time]"
-                      name="time">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[time]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[local_authority_(district)]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[local_authority_(district)]"
-                      name="local_authority_(district)">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[local_authority_(district)]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[speed_limit]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[speed_limit]"
-                      name="speed_limit">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[speed_limit]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[junction_detail]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[junction_detail]"
-                      name="junction_detail">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[junction_detail]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[junction_control]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[junction_control]"
-                      name="junction_control">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[junction_control]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[light_conditions]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[light_conditions]"
-                      name="light_conditions">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[light_conditions]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[weather_conditions]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[weather_conditions]"
-                      name="weather_conditions">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[weather_conditions]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[urban_or_rural_area]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[urban_or_rural_area]"
-                      name="urban_or_rural_area">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[urban_or_rural_area]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
                       refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[casualty_reference]"
                       codePage="1250"
                       dataType="str"
@@ -10796,66 +10116,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[casualty_class]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[casualty_class]"
-                      name="casualty_class">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_class]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[sex_of_casualty]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[sex_of_casualty]"
-                      name="sex_of_casualty">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[sex_of_casualty]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[age_of_casualty]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[age_of_casualty]"
-                      name="age_of_casualty">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[age_of_casualty]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[age_band_of_casualty]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[age_band_of_casualty]"
-                      name="age_band_of_casualty">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[age_band_of_casualty]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
                       refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[casualty_severity]"
                       codePage="1250"
                       dataType="str"
@@ -10868,21 +10128,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
                           name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[casualty_severity]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[pedestrian_movement]"
-                      codePage="1250"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[pedestrian_movement]"
-                      name="pedestrian_movement">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[pedestrian_movement]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -10924,6 +10169,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
                           name="SortColumnId">#{Package\IMPORT DATA\Union All.Outputs[Union All Output 1].Columns[highway_authority]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[conditions_key]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\SORT FACTS.Outputs[Sort Output].Columns[conditions_key]"
+                      name="conditions_key">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\IMPORT DATA\Add datetime keys.Outputs[Derived Column Output].Columns[conditions_key]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -13883,7 +13143,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="39.6821940104167,38,60.6356119791667,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -13917,7 +13179,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="3.09886067708337,68.3621533442088,60.6356119791667,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -13945,7 +13209,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-11.1034505208333,-15.6025390625,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -13979,7 +13245,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-27.6001171875,21,41.700234375,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14007,7 +13275,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="28.8488606770833,-15.5732421875,60.6356119791667,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14041,7 +13311,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-5.3501171875,17.5,41.700234375,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14075,7 +13347,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-10.6294140625,20.5,41.758828125,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14109,7 +13383,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-0.817805989583334,17,60.6356119791667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14143,7 +13419,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-29.3578059895833,27,49.7156119791667,9.568359375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14165,7 +13443,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-30.6034505208333,9.44873046875,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14200,7 +13480,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-51.5110131163991,-15.6708984375,28.746796875,9.6708984375"
+              BoundingBox="-86.9347631163991,-17.6630859375,99.594296875,11.6630859375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -14236,7 +13516,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-23.10798828125,31,66.2159765625,9.7490234375"
+              BoundingBox="-58.2938151041667,31,136.587630208333,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -14271,7 +13551,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-70.3534505208333,16.5,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14305,7 +13587,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="31.5632161458332,90.0797481636936,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14339,7 +13623,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-61.7527473958334,30.4863221884498,30.838828125,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14373,7 +13659,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="9.3998828125,25.5,41.700234375,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14407,7 +13695,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-87.9367838541668,152.510292524377,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14429,7 +13719,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-391.067805989583,5,60.6356119791667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14463,7 +13755,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-127.0201171875,35.9295774647887,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14485,7 +13779,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-30.6034505208333,5.44873046875,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14507,7 +13803,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-30.3178059895833,12.94873046875,60.6356119791667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14542,7 +13840,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-11.18375,23,33.8675,9.7490234375"
+              BoundingBox="-41.1500260416667,23,93.8000520833333,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -14578,7 +13876,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-11.09875,20.5,31.1975,9.7490234375"
+              BoundingBox="-46.5316927083333,20.5,102.063385416667,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -14613,7 +13911,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="217.25305172132,-15.6025390625,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14647,7 +13947,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-8.93678385416663,52.7236842105263,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14681,7 +13983,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-78.1034505208333,29,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14715,7 +14019,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-82.8534505208333,19.5,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14743,7 +14049,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="42.3965494791667,-15.6025390625,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14777,7 +14085,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="224.396549479167,24.3454545454545,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14811,7 +14121,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="58.0988606770832,194.833528722157,60.6356119791667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14845,7 +14157,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="35.0155273437502,20.0082063305979,60.6356119791667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14879,7 +14193,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-192.603450520833,21.2363636363636,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14913,7 +14229,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-80.1034505208333,-15.6025390625,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14935,7 +14253,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-30.6034505208333,14.94873046875,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14969,7 +14289,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-8.1001171875,19,41.700234375,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14991,7 +14313,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-30.6034505208333,15.44873046875,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -15025,7 +14349,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-8.10345052083333,-15.6025390625,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -15059,7 +14385,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-26.6694140625,55.5,30.838828125,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -15093,7 +14421,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-8.10345052083333,-15.6025390625,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -15127,7 +14457,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-15.8534505208333,-15.6025390625,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -15161,7 +14493,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-25.6294140625,17.5,41.758828125,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -15195,7 +14529,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-18.6078059895833,17,49.7156119791667,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
@@ -15233,7 +14569,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="67.3965494791667,15.4347826086957,61.2069010416667,9.6025390625"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -15267,7 +14605,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-13.8934505208333,24.5,50.2869010416667,9.5732421875"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
