@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="195"
-  DTS:VersionGUID="{679E0350-2B31-43D3-BFD6-1CF484669F76}">
+  DTS:VersionBuild="196"
+  DTS:VersionGUID="{9036B4AC-9FD3-4DC6-891B-2388B6E35249}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -62,6 +62,22 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=DESKTOP-G3DNSSJ\S1;Initial Catalog=Accidents;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DQS Cleansing Connection Manager.DESKTOP-G3DNSSJ\S1]"
+      DTS:CreationName="DQS"
+      DTS:DTSID="{D9D1FB25-6DEB-4E19-BF46-22B1D1639789}"
+      DTS:ObjectName="DQS Cleansing Connection Manager.DESKTOP-G3DNSSJ\S1">
+      <DTS:ObjectData>
+        <InnerObject>
+          <ServerName
+            Type="8"
+            Value="DESKTOP-G3DNSSJ\S1" />
+          <TargetServerVersion
+            Type="3"
+            Value="140" />
+        </InnerObject>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -6842,7 +6858,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       cachedLength="50"
                       cachedName="speed_limit"
                       externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[speed_limit]"
-                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[speed_limit]" />
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[speed_limit]" />
                     <inputColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].Columns[junction_detail]"
                       cachedCodepage="1250"
@@ -6850,15 +6866,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       cachedLength="50"
                       cachedName="junction_detail"
                       externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[junction_detail]"
-                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[junction_detail]" />
-                    <inputColumn
-                      refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].Columns[junction_control]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="junction_control"
-                      externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[junction_control]"
-                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[junction_control]" />
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail]" />
                     <inputColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].Columns[light_conditions]"
                       cachedCodepage="1250"
@@ -6866,7 +6874,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       cachedLength="50"
                       cachedName="light_conditions"
                       externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[light_conditions]"
-                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[light_conditions]" />
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions]" />
                     <inputColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].Columns[urban_or_rural_area]"
                       cachedCodepage="1250"
@@ -6874,7 +6882,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       cachedLength="50"
                       cachedName="urban_or_rural_area"
                       externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[urban_or_rural_area]"
-                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[urban_or_rural_area]" />
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area]" />
                     <inputColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].Columns[weather_conditions]"
                       cachedCodepage="1250"
@@ -6882,7 +6890,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       cachedLength="50"
                       cachedName="weather_conditions"
                       externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[weather_conditions]"
-                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[weather_conditions]" />
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions]" />
                     <inputColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].Columns[conditions_key]"
                       cachedCodepage="1250"
@@ -6890,43 +6898,51 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       cachedLength="50"
                       cachedName="conditions_key"
                       externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[primary_key]"
-                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[conditions_key]" />
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[conditions_key]" />
+                    <inputColumn
+                      refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].Columns[junction_control_Output]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="junction_control_Output"
+                      externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[junction_control]"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Output]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[speed_limit]"
-                      dataType="i4"
+                      dataType="ui1"
                       name="speed_limit" />
                     <externalMetadataColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[junction_detail]"
                       codePage="1250"
                       dataType="str"
-                      length="1"
+                      length="30"
                       name="junction_detail" />
                     <externalMetadataColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[junction_control]"
                       codePage="1250"
                       dataType="str"
-                      length="1"
+                      length="30"
                       name="junction_control" />
                     <externalMetadataColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[light_conditions]"
                       codePage="1250"
                       dataType="str"
-                      length="1"
+                      length="30"
                       name="light_conditions" />
                     <externalMetadataColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[urban_or_rural_area]"
                       codePage="1250"
                       dataType="str"
-                      length="1"
+                      length="30"
                       name="urban_or_rural_area" />
                     <externalMetadataColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[weather_conditions]"
                       codePage="1250"
                       dataType="str"
-                      length="1"
+                      length="30"
                       name="weather_conditions" />
                     <externalMetadataColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[primary_key]"
@@ -7657,6 +7673,253 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       lineageId="Package\IMPORT DATA\DIM_VEHICLE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\IMPORT DATA\DQS Cleansing"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="DQS Cleansing component"
+              name="DQS Cleansing"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.Int64"
+                  name="KnowledgebaseName"
+                  typeConverter="NOTBROWSABLE">1000001</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataCorrectionComponent</property>
+                <property
+                  dataType="System.String"
+                  name="PackageName">Package</property>
+                <property
+                  dataType="System.String"
+                  name="TaskId">{B37DA42A-FB37-406A-8A85-A73F60D5D76F}</property>
+                <property
+                  dataType="System.Boolean"
+                  name="EncryptConnection">false</property>
+                <property
+                  dataType="System.Boolean"
+                  name="StandardizeOutput">true</property>
+                <property
+                  dataType="System.Boolean"
+                  name="ConfidenceOutputColumnExists">false</property>
+                <property
+                  dataType="System.Boolean"
+                  name="ReasonOutputColumnExists">false</property>
+                <property
+                  dataType="System.Boolean"
+                  name="AppendedDataOutputColumnExists">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\IMPORT DATA\DQS Cleansing.Connections[DQS]"
+                  connectionManagerID="Package.ConnectionManagers[DQS Cleansing Connection Manager.DESKTOP-G3DNSSJ\S1]"
+                  connectionManagerRefId="Package.ConnectionManagers[DQS Cleansing Connection Manager.DESKTOP-G3DNSSJ\S1]"
+                  name="DQS" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\IMPORT DATA\DQS Cleansing.Inputs[DQS Cleansing Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="DQS Cleansing Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[conditions_key]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="conditions_key"
+                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[conditions_key]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[conditions_key]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[junction_detail]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="junction_detail"
+                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[junction_detail]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[junction_control]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="junction_control"
+                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[junction_control]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Source]}</property>
+                        <property
+                          dataType="System.String"
+                          name="DomainName">junction_control</property>
+                        <property
+                          dataType="System.Int64"
+                          name="DomainId">1072</property>
+                        <property
+                          dataType="System.Boolean"
+                          name="CorrectedOutputIsString">false</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="CorrectedOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Output]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="StatusOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Status]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[light_conditions]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="light_conditions"
+                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[light_conditions]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[speed_limit]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="speed_limit"
+                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[speed_limit]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[speed_limit]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[weather_conditions]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="weather_conditions"
+                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[weather_conditions]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Inputs[DQS Cleansing Input].Columns[urban_or_rural_area]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="urban_or_rural_area"
+                      lineageId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1].Columns[urban_or_rural_area]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output]"
+                  name="DQS Cleansing Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[conditions_key]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[conditions_key]"
+                      name="conditions_key" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail]"
+                      name="junction_detail" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Source]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Source]"
+                      name="junction_control_Source" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Output]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Output]"
+                      name="junction_control_Output" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Status]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Status]"
+                      name="junction_control_Status" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions]"
+                      name="light_conditions" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[speed_limit]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[speed_limit]"
+                      name="speed_limit" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions]"
+                      name="weather_conditions" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area]"
+                      name="urban_or_rural_area" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Record Status]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Record Status]"
+                      name="Record Status" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -12001,59 +12264,64 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               startId="Package\IMPORT DATA\Aggregate dates.Outputs[Aggregate Output 1]" />
             <path
               refId="Package\IMPORT DATA.Paths[Aggregate Output 13]"
-              endId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input]"
-              name="Aggregate Output 1"
-              startId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Aggregate Output 14]"
               endId="Package\IMPORT DATA\Conditional Split.Inputs[Conditional Split Input]"
               name="Aggregate Output 1"
               startId="Package\IMPORT DATA\Aggregate time.Outputs[Aggregate Output 1]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Aggregate Output 15]"
+              refId="Package\IMPORT DATA.Paths[Aggregate Output 14]"
               endId="Package\IMPORT DATA\ADD CASUALTY ID.Inputs[Input 0]"
               name="Aggregate Output 1"
               startId="Package\IMPORT DATA\GROUP CASUALTIES.Outputs[Aggregate Output 1]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output7]"
-              endId="Package\IMPORT DATA\Conditional Split 1.Inputs[Conditional Split Input]"
-              name="Derived Column Output"
-              startId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Output]" />
+              refId="Package\IMPORT DATA.Paths[Aggregate Output 15]"
+              endId="Package\IMPORT DATA\DQS Cleansing.Inputs[DQS Cleansing Input]"
+              name="Aggregate Output 1"
+              startId="Package\IMPORT DATA\Aggregate conditions.Outputs[Aggregate Output 1]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output6]"
-              endId="Package\IMPORT DATA\DIM_DATE.Inputs[OLE DB Destination Input]"
+              refId="Package\IMPORT DATA.Paths[Derived Column Output]"
+              endId="Package\IMPORT DATA\Union All.Inputs[Union All Input 2]"
               name="Derived Column Output"
-              startId="Package\IMPORT DATA\Add new date columns.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output5]"
-              endId="Package\IMPORT DATA\DIM_TIME.Inputs[OLE DB Destination Input]"
-              name="Derived Column Output"
-              startId="Package\IMPORT DATA\Add new time columns.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output4]"
-              endId="Package\IMPORT DATA\Convert HYD to date.Inputs[Derived Column Input]"
-              name="Derived Column Output"
-              startId="Package\IMPORT DATA\Convert HYD to int.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output3]"
-              endId="Package\IMPORT DATA\Union All.Inputs[Union All Input 1]"
-              name="Derived Column Output"
-              startId="Package\IMPORT DATA\Convert varchar to date.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output2]"
-              endId="Package\IMPORT DATA\Multicast.Inputs[Multicast Input 1]"
-              name="Derived Column Output"
-              startId="Package\IMPORT DATA\Add datetime keys.Outputs[Derived Column Output]" />
+              startId="Package\IMPORT DATA\Convert HYD to date.Outputs[Derived Column Output]" />
             <path
               refId="Package\IMPORT DATA.Paths[Derived Column Output1]"
               endId="Package\IMPORT DATA\Sort locations.Inputs[Sort Input]"
               name="Derived Column Output"
               startId="Package\IMPORT DATA\Derived Column.Outputs[Derived Column Output]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Derived Column Output]"
-              endId="Package\IMPORT DATA\Union All.Inputs[Union All Input 2]"
+              refId="Package\IMPORT DATA.Paths[Derived Column Output2]"
+              endId="Package\IMPORT DATA\Multicast.Inputs[Multicast Input 1]"
               name="Derived Column Output"
-              startId="Package\IMPORT DATA\Convert HYD to date.Outputs[Derived Column Output]" />
+              startId="Package\IMPORT DATA\Add datetime keys.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Derived Column Output3]"
+              endId="Package\IMPORT DATA\Union All.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\IMPORT DATA\Convert varchar to date.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Derived Column Output4]"
+              endId="Package\IMPORT DATA\Convert HYD to date.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\IMPORT DATA\Convert HYD to int.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Derived Column Output5]"
+              endId="Package\IMPORT DATA\DIM_TIME.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\IMPORT DATA\Add new time columns.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Derived Column Output6]"
+              endId="Package\IMPORT DATA\DIM_DATE.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\IMPORT DATA\Add new date columns.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Derived Column Output7]"
+              endId="Package\IMPORT DATA\Conditional Split 1.Inputs[Conditional Split Input]"
+              name="Derived Column Output"
+              startId="Package\IMPORT DATA\Clean data.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[DQS Cleansing Output]"
+              endId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input]"
+              name="DQS Cleansing Output"
+              startId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output]" />
             <path
               refId="Package\IMPORT DATA.Paths[Flat File Source Output]"
               endId="Package\IMPORT DATA\Multicast data.Inputs[Multicast Input 1]"
@@ -12080,16 +12348,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               name="Merge Join Output"
               startId="Package\IMPORT DATA\Add vehicle id to facts.Outputs[Merge Join Output]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Multicast Output 12]"
-              endId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input]"
-              name="Multicast Output 1"
-              startId="Package\IMPORT DATA\Multicast.Outputs[Multicast Output 1]" />
-            <path
-              refId="Package\IMPORT DATA.Paths[Multicast Output 13]"
-              endId="Package\IMPORT DATA\DIM_VEHICLE.Inputs[OLE DB Destination Input]"
-              name="Multicast Output 1"
-              startId="Package\IMPORT DATA\Multicast vehicles.Outputs[Multicast Output 1]" />
-            <path
               refId="Package\IMPORT DATA.Paths[Multicast Output 1]"
               endId="Package\IMPORT DATA\DIM_CASUALTIES.Inputs[OLE DB Destination Input]"
               name="Multicast Output 1"
@@ -12100,10 +12358,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               name="Multicast Output 1"
               startId="Package\IMPORT DATA\Multicast data.Outputs[Multicast Output 1]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Multicast Output 3]"
-              endId="Package\IMPORT DATA\LEAVE DATA WITH CASUALTIES.Inputs[Conditional Split Input]"
-              name="Multicast Output 3"
-              startId="Package\IMPORT DATA\Multicast data.Outputs[Multicast Output 3]" />
+              refId="Package\IMPORT DATA.Paths[Multicast Output 12]"
+              endId="Package\IMPORT DATA\SORT FACTS.Inputs[Sort Input]"
+              name="Multicast Output 1"
+              startId="Package\IMPORT DATA\Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Multicast Output 13]"
+              endId="Package\IMPORT DATA\DIM_VEHICLE.Inputs[OLE DB Destination Input]"
+              name="Multicast Output 1"
+              startId="Package\IMPORT DATA\Multicast vehicles.Outputs[Multicast Output 1]" />
             <path
               refId="Package\IMPORT DATA.Paths[Multicast Output 31]"
               endId="Package\IMPORT DATA\Sort casualties.Inputs[Sort Input]"
@@ -12114,6 +12377,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               endId="Package\IMPORT DATA\SORT VEHICLES.Inputs[Sort Input]"
               name="Multicast Output 3"
               startId="Package\IMPORT DATA\Multicast vehicles.Outputs[Multicast Output 3]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Multicast Output 3]"
+              endId="Package\IMPORT DATA\LEAVE DATA WITH CASUALTIES.Inputs[Conditional Split Input]"
+              name="Multicast Output 3"
+              startId="Package\IMPORT DATA\Multicast data.Outputs[Multicast Output 3]" />
             <path
               refId="Package\IMPORT DATA.Paths[Multicast Output 33]"
               endId="Package\IMPORT DATA\Aggregate time.Inputs[Aggregate Input 1]"
@@ -12165,11 +12433,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               name="Sort Output"
               startId="Package\IMPORT DATA\Sort casualties.Outputs[Sort Output]" />
             <path
-              refId="Package\IMPORT DATA.Paths[Sort Output1]"
-              endId="Package\IMPORT DATA\Add vehicle id to facts.Inputs[Merge Join Right Input]"
-              name="Sort Output"
-              startId="Package\IMPORT DATA\SORT VEHICLES.Outputs[Sort Output]" />
-            <path
               refId="Package\IMPORT DATA.Paths[Sort Output2]"
               endId="Package\IMPORT DATA\Merge Join.Inputs[Merge Join Left Input]"
               name="Sort Output"
@@ -12189,6 +12452,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               endId="Package\IMPORT DATA\Add casualty id to facts.Inputs[Merge Join Left Input]"
               name="Sort Output"
               startId="Package\IMPORT DATA\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\IMPORT DATA.Paths[Sort Output1]"
+              endId="Package\IMPORT DATA\Add vehicle id to facts.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\IMPORT DATA\SORT VEHICLES.Outputs[Sort Output]" />
             <path
               refId="Package\IMPORT DATA.Paths[Union All Output 1]"
               endId="Package\IMPORT DATA\Add datetime keys.Inputs[Derived Column Input]"
@@ -13135,7 +13403,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         <NodeLayout
           Size="167,42"
           Id="Package\IMPORT DATA\DIM_CONDITIONS"
-          TopLeft="777,683" />
+          TopLeft="785,750" />
         <NodeLayout
           Size="155,42"
           Id="Package\IMPORT DATA\Conditional Split 1"
@@ -14325,7 +14593,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Aggregate Output 15]"
+          Id="Package\IMPORT DATA.Paths[Aggregate Output 14]"
           TopLeft="1014,299">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -14359,7 +14627,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Aggregate Output 14]"
+          Id="Package\IMPORT DATA.Paths[Aggregate Output 13]"
           TopLeft="509.5,643">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -14384,40 +14652,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                     Point3="-9,26" />
                   <mssgle:LineSegment
                     End="-9,36.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\IMPORT DATA.Paths[Aggregate Output 13]"
-          TopLeft="838,644">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="22.5,39"
-              Start="0,0"
-              End="22.5,31.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.5"
-                    Point2="0,19.5"
-                    Point3="4,19.5" />
-                  <mssgle:LineSegment
-                    End="18.5,19.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="18.5,19.5"
-                    Point2="22.5,19.5"
-                    Point3="22.5,23.5" />
-                  <mssgle:LineSegment
-                    End="22.5,31.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14598,6 +14832,66 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                     Point3="154.5,75.5" />
                   <mssgle:LineSegment
                     End="154.5,135.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="148,42"
+          Id="Package\IMPORT DATA\DQS Cleansing"
+          TopLeft="768,674" />
+        <EdgeLayout
+          Id="Package\IMPORT DATA.Paths[Aggregate Output 15]"
+          TopLeft="840,644">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\IMPORT DATA.Paths[DQS Cleansing Output]"
+          TopLeft="842,716">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.5,34"
+              Start="0,0"
+              End="26.5,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="4,17" />
+                  <mssgle:LineSegment
+                    End="22.5,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,17"
+                    Point2="26.5,17"
+                    Point3="26.5,21" />
+                  <mssgle:LineSegment
+                    End="26.5,26.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

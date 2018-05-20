@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-G3DNSSJ</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAbsNR50vJnU2MwDozIbBIMgAAAAACAAAAAAAQZgAAAAEAACAAAADzIqVuort2+7Q4BzYngNEF6eyGzdC7c4RGwhXp0DYVpwAAAAAOgAAAAAIAACAAAABx7A9X3FIuT3kgTR8gCZT9rEzqjS+O8jgktKH5yfSby5AAAAA0GNb+Tk3uL/CwfKpNd+aNNRhE2VJ5PflyguEro3JsM7AU69pIQJzMbZB6Yfys8cU9bJ1DyhwelsRlyAXdUtJxqafvgDpIl4xUzOdwr/bmlYkKYexZ/8a74WghUtnNBOTIxVW6dbWDxLWX3LiJctUxLEAHtU+VX4Rr5R+RWCijYjvGfYE3L6+7sQX1EWeWkAxAAAAAJApHXT4kCI9eQ6Zz4aKITG5oGx2AKAaQhLklRV03yC7miDsmN9Gxj3g3AxHFkznsW2Mw3iWf7KmYqprAloAXrA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAbsNR50vJnU2MwDozIbBIMgAAAAACAAAAAAAQZgAAAAEAACAAAABjGF7PVniIRz4pNDoIRExekyIl7VwFnKDXcMYYoJhIigAAAAAOgAAAAAIAACAAAADOM0mnimsN3OKPTG0cER4R9ewLmRtyRLpEBKPcp137Z5AAAACeNu/u7TN49p77tnYEZUXnd6UgBWuE+0pB/GIQTJwlUg+k5OiIo3nqNjBHiR/Y9BFi+iulEGbm1YXBgm/GbhI0bAYMuDMtNgPg/XSsNcxPsgtuW16w1DJ9a5Csceo4YHmhIxRrT4s89XeVWFeU5jZ6IG+erP8VnjMJqyUimKQ/9OwLZTV+DoExn4s7C23B9mhAAAAAfagFPaz7DbAJBG3IN8KKJqq7wO2C3/MMm7CnAvU4wkGiu4bsN1dwOWEhzKjpTQJApJXMTMp1gOQx0A4tUB4L0g==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -43,10 +43,10 @@
                 <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">178</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">196</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{21768B32-7E13-4A2D-8A79-00BF39855AA1}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{9036B4AC-9FD3-4DC6-891B-2388B6E35249}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -321,6 +321,51 @@
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.DQS Cleansing Connection Manager.DESKTOP-G3DNSSJ\S1.ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=DESKTOP-G3DNSSJ\S1</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.DQS Cleansing Connection Manager.DESKTOP-G3DNSSJ\S1.ServerName">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">DESKTOP-G3DNSSJ\S1</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.DQS Cleansing Connection Manager.DESKTOP-G3DNSSJ\S1.TargetServerVersion">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">140</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
                 <SSIS:Parameter SSIS:Name="CM.main_data.AlwaysCheckForRowDelimiters">
