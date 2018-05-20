@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="196"
-  DTS:VersionGUID="{9036B4AC-9FD3-4DC6-891B-2388B6E35249}">
+  DTS:VersionBuild="197"
+  DTS:VersionGUID="{2F0A0043-74D8-464C-8E26-03DBA842C66B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -6860,6 +6860,22 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[speed_limit]"
                       lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[speed_limit]" />
                     <inputColumn
+                      refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].Columns[conditions_key]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="conditions_key"
+                      externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[primary_key]"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[conditions_key]" />
+                    <inputColumn
+                      refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].Columns[junction_control]"
+                      cachedCodepage="1250"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="junction_control"
+                      externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[junction_control]"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control]" />
+                    <inputColumn
                       refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].Columns[junction_detail]"
                       cachedCodepage="1250"
                       cachedDataType="str"
@@ -6891,22 +6907,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       cachedName="weather_conditions"
                       externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[weather_conditions]"
                       lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions]" />
-                    <inputColumn
-                      refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].Columns[conditions_key]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="conditions_key"
-                      externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[primary_key]"
-                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[conditions_key]" />
-                    <inputColumn
-                      refId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].Columns[junction_control_Output]"
-                      cachedCodepage="1250"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="junction_control_Output"
-                      externalMetadataColumnId="Package\IMPORT DATA\DIM_CONDITIONS.Inputs[OLE DB Destination Input].ExternalColumns[junction_control]"
-                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Output]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -7753,7 +7753,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail]}</property>
+                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail_Source]}</property>
+                        <property
+                          dataType="System.String"
+                          name="DomainName">junction_detail</property>
+                        <property
+                          dataType="System.Int64"
+                          name="DomainId">1080</property>
+                        <property
+                          dataType="System.Boolean"
+                          name="CorrectedOutputIsString">false</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="CorrectedOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="StatusOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail_Status]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -7780,7 +7797,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="CorrectedOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Output]}</property>
+                          name="CorrectedOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control]}</property>
                         <property
                           containsID="true"
                           dataType="System.Int32"
@@ -7798,7 +7815,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions]}</property>
+                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions_Source]}</property>
+                        <property
+                          dataType="System.String"
+                          name="DomainName">light_conditions</property>
+                        <property
+                          dataType="System.Int64"
+                          name="DomainId">1081</property>
+                        <property
+                          dataType="System.Boolean"
+                          name="CorrectedOutputIsString">false</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="CorrectedOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="StatusOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions_Status]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -7826,7 +7860,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions]}</property>
+                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions_Source]}</property>
+                        <property
+                          dataType="System.String"
+                          name="DomainName">weather_conditions</property>
+                        <property
+                          dataType="System.Int64"
+                          name="DomainId">1083</property>
+                        <property
+                          dataType="System.Boolean"
+                          name="CorrectedOutputIsString">false</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="CorrectedOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="StatusOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions_Status]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -7840,7 +7891,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                         <property
                           containsID="true"
                           dataType="System.Int32"
-                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area]}</property>
+                          name="SourceOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area_Source]}</property>
+                        <property
+                          dataType="System.String"
+                          name="DomainName">urban_or_rural_area</property>
+                        <property
+                          dataType="System.Int64"
+                          name="DomainId">1082</property>
+                        <property
+                          dataType="System.Boolean"
+                          name="CorrectedOutputIsString">false</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="CorrectedOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          name="StatusOutputLineageId">#{Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area_Status]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
@@ -7860,12 +7928,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[conditions_key]"
                       name="conditions_key" />
                     <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail_Source]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail_Source]"
+                      name="junction_detail_Source" />
+                    <outputColumn
                       refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail]"
                       name="junction_detail" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail_Status]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_detail_Status]"
+                      name="junction_detail_Status" />
                     <outputColumn
                       refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Source]"
                       codePage="1250"
@@ -7874,18 +7955,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Source]"
                       name="junction_control_Source" />
                     <outputColumn
-                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Output]"
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Output]"
-                      name="junction_control_Output" />
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control]"
+                      name="junction_control" />
                     <outputColumn
                       refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Status]"
                       dataType="wstr"
                       length="100"
                       lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[junction_control_Status]"
                       name="junction_control_Status" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions_Source]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions_Source]"
+                      name="light_conditions_Source" />
                     <outputColumn
                       refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions]"
                       codePage="1250"
@@ -7894,12 +7982,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions]"
                       name="light_conditions" />
                     <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions_Status]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[light_conditions_Status]"
+                      name="light_conditions_Status" />
+                    <outputColumn
                       refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[speed_limit]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[speed_limit]"
                       name="speed_limit" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions_Source]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions_Source]"
+                      name="weather_conditions_Source" />
                     <outputColumn
                       refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions]"
                       codePage="1250"
@@ -7908,12 +8009,31 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                       lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions]"
                       name="weather_conditions" />
                     <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions_Status]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[weather_conditions_Status]"
+                      name="weather_conditions_Status" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area_Source]"
+                      codePage="1250"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area_Source]"
+                      name="urban_or_rural_area_Source" />
+                    <outputColumn
                       refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area]"
                       name="urban_or_rural_area" />
+                    <outputColumn
+                      refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area_Status]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[urban_or_rural_area_Status]"
+                      name="urban_or_rural_area_Status" />
                     <outputColumn
                       refId="Package\IMPORT DATA\DQS Cleansing.Outputs[DQS Cleansing Output].Columns[Record Status]"
                       dataType="wstr"
